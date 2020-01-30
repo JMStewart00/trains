@@ -1,0 +1,14 @@
+uuid: f923c2a3-c6a5-475b-af79-63b7a2a97bcc
+name: NextStop
+mail: info@nextstop.com
+slogan: 'Allow us to help you find your next stop in Providence!'
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE

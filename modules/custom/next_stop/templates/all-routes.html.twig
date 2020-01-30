@@ -1,0 +1,39 @@
+{% for route_group in routes %}
+  <table>
+    <tr>
+      <th>Link</th>
+      <th>Long Name</th>
+      <th>Short Name</th>
+      <th>Description</th>
+      <th>Destinations</th>
+      <th>Fare Class</th>
+    </tr>
+    {% for route in route_group %}
+      <tr
+        style="
+            background-color: #{{route['attributes']['color']}};
+            color: #{{route['attributes']['text_color']}};
+        ">
+          <td>
+            <a
+              href="/routes/{{ route['id'] }}/schedule"
+              style="
+                color: #{{route['attributes']['text_color']}};
+              "
+            >
+              View Schedule
+            </a>
+          </td>
+          <td>{{ route['attributes']['long_name'] }}</td>
+          <td>{{ route['attributes']['short_name'] }}</td>
+          <td>{{ route['attributes']['description'] }}</td>
+          <td>
+              {% for d in route['attributes']['direction_destinations'] %}
+                  {{ d }}<br>
+              {% endfor %}
+          </td>
+          <td>{{ route['attributes']['fare_class'] }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endfor %}

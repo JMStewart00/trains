@@ -1,0 +1,4 @@
+name: trains
+recipe: drupal8
+config:
+  webroot: .
