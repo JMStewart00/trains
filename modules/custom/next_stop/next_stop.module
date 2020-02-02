@@ -40,7 +40,7 @@ function next_stop_theme($existing, $type, $theme, $path) {
       'template' => 'selected-route',
       'variables' => [
         'stops' => [],
-        'schedule' => [],
+        'schedule' => '',
       ],
     ],
   ];

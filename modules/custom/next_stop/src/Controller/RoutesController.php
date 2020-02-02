@@ -55,6 +55,8 @@ class RoutesController extends ControllerBase {
    * Returns a render-able array for the all Routes page.
    */
   public function selectedRoute($routeId) {
+    $schedule_info = $this->fetchData(self::API_URL.'/routes/'.$routeId)['data'];
+    $schedule_name = $schedule_info['attributes']['long_name'];
     date_default_timezone_set('America/Kentucky/Louisville'); // quick and dirty for this purpose
 
     // Clean way to present filters in code.
@@ -101,6 +103,7 @@ class RoutesController extends ControllerBase {
       'content' => [
         '#theme' => 'selected_route',
         '#stops' => $stops_grouped_by_direction,
+        '#schedule' => $schedule_name,
       ]
     ];
   }

@@ -1,3 +1,5 @@
+<h1>Schedule information for {{ schedule }}</h1>
+<a href="/">Go back to Routes</a>
 {% if stops|length > 0 %}
     {% for direction in stops %}
     <h2>Next scheduled stops headed {{loop.index0 == 0 ? 'Northbound' : 'Southbound' }} </h2>
