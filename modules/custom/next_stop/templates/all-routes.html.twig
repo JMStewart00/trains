@@ -1,39 +1,41 @@
+{% macro colorFinder(color) %}
+  {% spaceless %}
+    {% set colors = {
+      '#75b646': 'il-green',
+      '#DA291C': 'red',
+      '#ED8B00': 'orange',
+      '#003DA5': 'royal',
+      '#00843D': 'green',
+      '#7C878E': 'gray',
+      '#FFC72C': 'school-bus',
+      '#80276C': 'purple',
+      '#008EAA': 'ferry',
+    } %}
+    {{- 'bg--' ~ colors[color] -}}
+  {% endspaceless %}
+{% endmacro %}
+
 {% for route_group in routes %}
-  <table>
-    <tr>
-      <th>Link</th>
-      <th>Long Name</th>
-      <th>Short Name</th>
-      <th>Description</th>
-      <th>Destinations</th>
-      <th>Fare Class</th>
-    </tr>
+  <div class="table-container">
+    <div class="flex-row header">
+      <div class="flex-cell">Link</div>
+      <div class="flex-cell">Long Name</div>
+      <div class="flex-cell">Short Name</div>
+      <div class="flex-cell">Destinations</div>
+      <div class="flex-cell">Description</div>
+    </div>
     {% for route in route_group %}
-      <tr
-        style="
-            background-color: #{{route['attributes']['color']}};
-            color: #{{route['attributes']['text_color']}};
-        ">
-          <td>
-            <a
-              href="/routes/{{ route['id'] }}/schedule"
-              style="
-                color: #{{route['attributes']['text_color']}};
-              "
-            >
-              View Schedule
-            </a>
-          </td>
-          <td>{{ route['attributes']['long_name'] }}</td>
-          <td>{{ route['attributes']['short_name'] }}</td>
-          <td>{{ route['attributes']['description'] }}</td>
-          <td>
+      <div class="flex-row {{- _self.colorFinder('#' ~ route['attributes']['color']) -}}">
+          <div class="flex-cell first"><a href="/routes/{{- route['id'] -}}/schedule">View Schedule</a></div>
+          <div class="flex-cell"><span class="mobile-label">Long Name:</span>{{- route['attributes']['long_name'] -}}</div>
+          <div class="flex-cell"><span class="mobile-label">Short Name:</span>{{- route['attributes']['short_name'] -}}</div>
+          <div class="flex-cell"><span class="mobile-label">Destinations:<br></span>
               {% for d in route['attributes']['direction_destinations'] %}
-                  {{ d }}<br>
+                  {{- d -}}<br>
               {% endfor %}
-          </td>
-          <td>{{ route['attributes']['fare_class'] }}</td>
-      </tr>
+          </div>
+          <div class="flex-cell last"><span class="mobile-label">Description:</span>{{- route['attributes']['description'] -}}</div>
+      </div>
     {% endfor %}
-  </table>
+  </div>
 {% endfor %}
